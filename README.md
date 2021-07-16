@@ -1,6 +1,6 @@
 # C--
 Translator that takes C source code and transform it into the equivlant in pascal 
-# utilizing
+# Utilizing
 This translator can be utilized with terminal or the developed IDE.
 
 

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioMenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import org.fxmisc.richtext.CodeArea?>
+
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <MenuBar style="-fx-background-color: lightgray;" VBox.vgrow="NEVER">
+         <menus>
+            <Menu mnemonicParsing="false" text="File">
+               <items>
+                  <MenuItem fx:id="new_project" mnemonicParsing="false" onAction="#newproject" text="New" />
+                  <MenuItem fx:id="open_project" mnemonicParsing="false" onAction="#openproject" text="Open…" />
+                  <Menu fx:id="open_recent_project" mnemonicParsing="false" text="Open Recent">
+                     <items>
+                        <MenuItem fx:id="item1" mnemonicParsing="false" onAction="#item1_clicked" visible="false" />
+                        <MenuItem fx:id="item2" mnemonicParsing="false" onAction="#item2_clicked" visible="false" />
+                        <MenuItem fx:id="item3" mnemonicParsing="false" onAction="#item3_clicked" visible="false" />
+                        <MenuItem fx:id="item4" mnemonicParsing="false" onAction="#item4_clicked" visible="false" />
+                        <MenuItem fx:id="item5" mnemonicParsing="false" onAction="#item5_clicked" visible="false" />
+                     </items></Menu>
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="close_project" mnemonicParsing="false" onAction="#closeapp" text="Save and Close" />
+                  <MenuItem fx:id="save_project" mnemonicParsing="false" onAction="#saveproject" text="Save" />
+                  <MenuItem fx:id="save_as" mnemonicParsing="false" onAction="#save_as" text="Save As…" />
+                  <MenuItem mnemonicParsing="false" text="Revert" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <Menu mnemonicParsing="false" text="Languege">
+                    <items>
+                        <RadioMenuItem fx:id="english" mnemonicParsing="false" onAction="#change_lang_to_english" selected="true" text="English" />
+                        <RadioMenuItem fx:id="french" mnemonicParsing="false" onAction="#change_lang_to_french" text="French" />
+                    </items>
+                  </Menu>
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="quit_app" mnemonicParsing="false" onAction="#Exit" text="Quit" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Edit">
+               <items>
+                  <MenuItem fx:id="undo" mnemonicParsing="false" onAction="#undoIsClicked" text="Undo" />
+                  <MenuItem fx:id="redo" mnemonicParsing="false" onAction="#redoIsClicked" text="Redo" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="cut" mnemonicParsing="false" onAction="#cut" text="Cut" />
+                  <MenuItem fx:id="copy" mnemonicParsing="false" onAction="#copy" text="Copy" />
+                  <MenuItem fx:id="paste" mnemonicParsing="false" onAction="#paste" text="Paste" />
+                  <MenuItem fx:id="delete" mnemonicParsing="false" onAction="#delete" text="Delete" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="select_all" mnemonicParsing="false" onAction="#SelectAll" text="Select All" />
+                  <MenuItem mnemonicParsing="false" onAction="#unselectall" text="Unselect All" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Build">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#build_c" text="Build the C program..." />
+                  <MenuItem mnemonicParsing="false" onAction="#build_pascal" text="Build the Pascal program" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Run">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Run C" />
+                  <MenuItem mnemonicParsing="false" text="Run Pascal" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Translate">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#translat" text="Translat" />
+              </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+               <items>
+                  <MenuItem mnemonicParsing="false" text="About C-- Traslator" />
+               </items>
+            </Menu>
+         </menus>
+         <effect>
+            <ColorAdjust />
+         </effect>
+      </MenuBar>
+      <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+         <children>
+            <BorderPane prefHeight="418.0" prefWidth="640.0" stylesheets="@../../../../C-Pascal-Traductor-1/interface/main_style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <center>
+                  <SplitPane id="split_pane" fx:id="t_code" dividerPositions="1.0" orientation="VERTICAL" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+                     <items>
+                        <SplitPane id="c_pascal_pane" dividerPositions="0.5" onMouseClicked="#build_pascal" prefHeight="373.0" prefWidth="551.0">
+                           <items>
+                              <CodeArea fx:id="c_code" onKeyPressed="#changed" onMouseClicked="#c_is_selected" prefHeight="180.0" prefWidth="50.0" styleClass="styled-text-area" visible="false">
+                                 <padding>
+                                    <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+                                 </padding>
+                              </CodeArea>
+                              <CodeArea fx:id="pascal_code" onMouseClicked="#pas_is_selected" prefHeight="180.0" prefWidth="50.0" styleClass="styled-text-area" visible="false">
+                                 <padding>
+                                    <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+                                 </padding></CodeArea>
+                           </items>
+                        </SplitPane>
+                        <CodeArea fx:id="terminal" editable="false" prefHeight="107.0" prefWidth="588.0" styleClass="terminal" visible="false" />
+                     </items>
+                     <styleClass>
+                        <String fx:value="background" />
+                        <String fx:value="text-area" />
+                     </styleClass>
+                  </SplitPane>
+               </center>
+               <left>
+                  <Pane prefHeight="373.0" prefWidth="50.0" style="-fx-background-color: #273037;" BorderPane.alignment="CENTER">
+                     <children>
+                        <VBox prefHeight="311.0" prefWidth="44.0">
+                           <children>
+                              <ImageView fx:id="build" fitHeight="35.0" fitWidth="35.0" onMouseClicked="#build_c_shortcut" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/hammerc.png" />
+                                 </image>
+                                 <VBox.margin>
+                                    <Insets left="7.5" top="20.0" />
+                                 </VBox.margin>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </ImageView>
+                              <ImageView fx:id="build2" fitHeight="35.0" fitWidth="35.0" onMouseClicked="#build_pas_shortcut" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/hammer_pas.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <VBox.margin>
+                                    <Insets left="7.5" top="20.0" />
+                                 </VBox.margin>
+                              </ImageView>
+                              <ImageView fx:id="build1" fitHeight="35.0" fitWidth="165.0" onMouseClicked="#translate_shortcut" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/translation.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <VBox.margin>
+                                    <Insets left="7.5" top="20.0" />
+                                 </VBox.margin>
+                              </ImageView>
+                              <ImageView fx:id="build11" fitHeight="35.0" fitWidth="165.0" onMouseClicked="#hide_t" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/Untitled-1.png" />
+                                 </image>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                                 <VBox.margin>
+                                    <Insets left="7.5" top="20.0" />
+                                 </VBox.margin>
+                              </ImageView>
+                           </children>
+                        </VBox>
+                     </children></Pane>
+               </left>
+               <bottom>
+                  <Pane fx:id="terminal1" maxHeight="10.0" minHeight="10.0" prefHeight="10.0" style="-fx-background-color: #254b62;" BorderPane.alignment="CENTER" />
+               </bottom>
+            </BorderPane>
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>

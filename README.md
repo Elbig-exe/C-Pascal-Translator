@@ -1,4 +1,4 @@
-#C-Pascal-Translator
+# C-Pascal-Translator
 Translator that takes C source code and transform it into the equivlant in pascal 
 # Utilizing
 This translator can be utilized with terminal or the developed IDE.

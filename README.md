@@ -19,4 +19,6 @@ This translator can be utilized with the terminal or the developed IDE.
   * Time management
   * Working under pressure
   * Decision making.
+## Documentation:
+https://drive.google.com/file/d/1IXNjThQBzIuVOTTV936bhjzJQyGgYsOY/view?usp=share_link
 
